@@ -1,0 +1,19 @@
+{
+    "name": "adapt-walkgrove-simulation",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/walkgrovedev/adapt-walkgrove-simulation.git"
+    },
+    "framework": "5",
+    "version": "1.0.0",
+    "homepage": "https://github.com/walkgrovedev/adapt-walkgrove-simulation.git",
+    "component": "simulation",
+    "displayName": "Simulation",
+    "description": "A component ...",
+    "main": "/js/adapt-walkgrove-simulation.js",
+    "keywords": [
+        "adapt-plugin",
+        "adapt-component"
+    ],
+    "license": "GPL-3.0"
+}
