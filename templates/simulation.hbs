@@ -1,12 +1,80 @@
 <div class="component__inner simulation__inner">
   {{> component this}} 
 
-  {{!-- <div class="simulation__main">
-  {{#each _items}}
+  <div class="simulation__main">
 
-  {{/each}}
-  </div> 
-  
-  {{#if body}} {{/if}} --}}
+    {{#each _items}}
+      <div class="component__widget simulation__widget">
+
+        <img class="simulation__image" src="{{_graphic.src}}" {{#if _graphic.alt}}aria-label="{{_graphic.alt}}"{{else}}aria-hidden="true"{{/if}}>
+        
+        <div class="simulation__step" data-index="{{@index}}" >
+
+          <div class="simulation__incorrect js-sim-incorrect"></div>
+
+          {{#if_eq _stepType "select" }} 
+          <div class="simulation__area js-sim-click-area" data-index="{{@index}}" style="width:{{_position._width}}%;height:{{_position._height}}%;top:{{_position._top}}%;left:{{_position._left}}%;"></div>
+          {{/if_eq}}
+
+          {{#if_eq _stepType "input" }} 
+          <input type="text" class="simulation__input js-sim-input" data-index="{{@index}}" style="width:{{_position._width}}%;height:{{_position._height}}%;top:{{_position._top}}%;left:{{_position._left}}%;" />
+          {{/if_eq}}
+
+          {{#if_eq _stepType "message" }} 
+          <div class="simulation__message" >
+            <div class="simulation__message-fade"></div>
+            <div class="simulation__message-main">
+              <div class="simulation__message-body" id="{{../_id}}-message-{{@index}}">{{{message}}}</div>
+              <div class="simulation__button">
+                <button class="simulation__continue-btn btn js-sim-continue-click" aria-label="{{{../messageBtn}}}">
+                  {{{../messageBtn}}}
+                </button>
+                <button class="simulation__retry-btn btn js-sim-retry-click hide" aria-label="{{{../finishBtn}}}">
+                  {{{../finishBtn}}}
+                </button>
+              </div>
+            </div> 
+          </div>
+          {{/if_eq}}
+
+          {{#if warning}} 
+          <div class="simulation__warning">{{{warning}}}</div> 
+          {{/if}}
+
+          {{#if data}} 
+          <div class="simulation__data">
+            <div class="simulation__data-title">{{{../dataTitle}}}</div>
+            <div class="simulation__data-content">{{{data}}}</div>
+          </div> 
+          {{/if}}
+
+          {{#if_eq ../_type "watch"}}
+          <div class="simulation__watch-mouse icon"></div>
+          {{/if_eq}}
+
+        </div>
+
+        {{#if_eq @index 0 }} 
+        <div class="simulation__intro" >
+          <div class="simulation__intro-blocker"></div>
+          <div class="simulation__message-main">
+            <div>{{{../introduction}}}</div>
+            <div class="simulation__button">
+              <button class="simulation__continue-btn btn js-sim-start-click" aria-label="{{{../startBtn}}}">
+                {{{../startBtn}}}
+              </button>
+            </div>
+          </div> 
+        </div>
+        {{/if_eq}}
+
+        {{#if content}} 
+          <div class="simulation__content">{{{content}}}</div> 
+        {{/if}}
+
+      </div>
+    {{/each}}
+
+  </div>
 
 </div>

@@ -1,6 +1,189 @@
 .simulation {
 
+    height: auto;
+    width: 100%;
+
     &__main {
-        
+        height: auto;
+        width: 100%;
     }
+
+    &__widget {
+        height: auto;
+        position: relative;
+        width: 100%;
+        
+        display: none;
+
+        &.is-visible {
+            display: block;
+        }
+    }
+
+    &__step, &__intro, &__message {
+        position: absolute;
+        top:0;
+        left:0;
+
+        width: 100%;
+        height: 100%;
+
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        display: flex;
+    }
+
+    &__intro {
+        z-index: 2;
+        &.hide {
+            display: none;
+        }
+    }
+
+    .simulation__intro-blocker, .simulation__message-fade {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left:0;
+        pointer-events: none;
+        background: @black;
+        opacity: 0.7;
+    }
+
+    .simulation__content, .simulation__message-main, .simulation__warning, .simulation__input, .simulation__data-title, .simulation__data-content {
+        padding: 1rem;
+    }
+
+    .simulation__content {
+        background-color: @item-color;
+        color: @font-color-inverted;
+    }
+
+    .simulation__incorrect {
+        width: 100%;
+        height: 100%;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index: 0;
+    }
+
+    .simulation__area {
+        position: absolute;
+        background-color: @item-color;
+        z-index: 1;
+        opacity: 0.2;
+
+        &.watch {
+            opacity: 1;
+            background: transparent;
+            border: 2px solid @item-color;
+            border-radius: 5px;
+            box-shadow: 0 0 5px @grey;
+        }
+    }
+
+    .simulation__input {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .simulation__message-main {
+        width: 50%;
+        background-color: @white;
+        color: @font-color;
+        border-radius: 1rem;
+        box-shadow: 0 0 5px @grey;
+        overflow: hidden;
+        z-index: 2;
+        text-align: center;
+
+        animation-name: fadeIn;
+        animation-duration: 1s;
+    }
+
+    .simulation__button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+
+        .simulation__continue-btn, .simulation__retry-btn {
+            &.hide {
+                display: none;
+            }
+        }
+
+        &.hide {
+            display: none;
+        }
+    }
+
+    .simulation__warning {
+        background-color: @validation-error;
+        color: @font-color-inverted;
+        box-shadow: 0 0 5px @grey;
+
+        opacity: 0;
+        pointer-events: none;
+
+        &.show {
+            opacity: 1;
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+
+        &.hide {
+            opacity: 0;
+            animation-name: fadeOut;
+            animation-duration: 1s;
+        }
+    }
+
+    .simulation__data {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 250px;
+        height: auto;
+        background-color: @white;
+        border-radius: 1rem 1rem 0 0;
+        box-shadow: 0 0 5px @grey;
+        overflow: hidden;
+    }
+
+    .simulation__data-title {
+        background-color: @secondary-colour;
+        color: @font-color-inverted;
+        text-align: center;
+        width: 100%;
+    }
+
+    .simulation__watch-mouse {
+        width: 2rem;
+        height: 2rem;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 3;
+
+        background-image: url(assets/mouse-pointer.svg);
+        background-size: contain;
+        background-repeat: no-repeat; 
+    }
+
+
+    @keyframes fadeIn {
+        from {opacity: 0}
+        to {opacity: 1}
+    }
+
+    @keyframes fadeOut {
+        from {opacity: 1}
+        to {opacity: 0}
+    }
+
 }

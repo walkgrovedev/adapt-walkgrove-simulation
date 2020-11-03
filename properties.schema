@@ -29,6 +29,196 @@
       "validators": [],
       "help": "This is the instruction text",
       "translatable": true
+    },
+    "messageBtn": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the message button title",
+      "translatable": true
+    },
+    "dataTitle": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Data sheet title",
+      "translatable": true
+    },
+    "introduction": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the introductory text",
+      "translatable": true
+    },
+    "startBtn": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the start button title",
+      "translatable": true
+    },
+    "passed": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the evalutae version passed feedback",
+      "translatable": true
+    },
+    "failed": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the evaluate version failed feedback",
+      "translatable": true
+    },
+    "finishBtn": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the retry button title",
+      "translatable": true
+    },
+    "_items": {
+      "type": "array",
+      "required": true,
+      "title": "Steps",
+      "items": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "_graphic": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "graphic url",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": false
+          },
+          "alt": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "graphic alt",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "_stepType": {
+            "type": "string",
+            "required": true,
+            "default": "",
+            "title": "the type of step required",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": false
+          },
+          "content": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "content instrucitons for the watch version",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "message": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "message content",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "data": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "The data required to be input for the practice and evaluate versions",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "warning": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "A warning for the practice and evaluate versions, if incorrect step taken",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "_position": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "_top": {
+                "type": "number",
+                "required": true,
+                "default": "",
+                "title": "The top posiiton %",
+                "inputType": "Number",
+                "validators": ["required", "number"],
+                "help": "",
+                "translatable": false
+              },
+              "_left": {
+                "type": "number",
+                "required": true,
+                "default": "",
+                "title": "The left posiiton %",
+                "inputType": "Number",
+                "validators": ["required", "number"],
+                "help": "",
+                "translatable": false
+              },
+              "_width": {
+                "type": "number",
+                "required": true,
+                "default": "",
+                "title": "The width dimension %",
+                "inputType": "Number",
+                "validators": ["required", "number"],
+                "help": "",
+                "translatable": false
+              },
+              "_height": {
+                "type": "number",
+                "required": true,
+                "default": "",
+                "title": "The height dimension %",
+                "inputType": "Number",
+                "validators": ["required", "number"],
+                "help": "",
+                "translatable": false
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
