@@ -23,6 +23,7 @@ define([
     _stepFailed: false,
     _mousex: 0,
     _mousey: 0,
+    _audio: false,
 
     preRender: function() {
 
@@ -78,6 +79,8 @@ define([
         this.animateMouse();
       }
 
+      this.checkAudio();
+
     },
 
     animateMouse: function () {
@@ -104,7 +107,15 @@ define([
           window.setTimeout(() => {
             switch(this._stepType) {
               case 'select':
-                this.onContinue();
+                let wait = 40;
+                if (this._audio === true) {
+                  if($('#audio')[0].duration) {
+                    wait = $('#audio')[0].duration * 1000;
+                  }
+                }
+                window.setTimeout(() => {
+                  this.onContinue();
+                }, wait);
                 break;
               case 'input':
                 //write out data...
@@ -117,9 +128,15 @@ define([
                     target.val(inputStr);
                   }, 100*i);
                   if(i === chars.length-1) {
+                    let wait = 150;
+                    if (this._audio === true) {
+                      if($('#audio')[0].duration) {
+                        wait = $('#audio')[0].duration * 1000;
+                      }
+                    }
                     window.setTimeout(() => {
                       this.onContinue();
-                    }, 1500);
+                    }, wait);
                   }
                 })
                 break;
@@ -222,6 +239,24 @@ define([
 
       }
 
+      this.checkAudio();
+
+    },
+
+    checkAudio: function() {
+      //audio?
+      this._audio = false;
+      Adapt.trigger('audio:stop');
+      if (Adapt.config.get('_sound')._isActive === true) {
+        this.model.get('_items').forEach((item, i) => {
+          if (i === this._stepIndex) {
+            if (item._audio) {
+              this._audio = true;
+              Adapt.trigger('audio:partial', {src: item._audio._src});
+            }
+          }
+        });
+      }
     },
 
     onRetry: function() {
