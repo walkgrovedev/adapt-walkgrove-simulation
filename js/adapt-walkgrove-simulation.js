@@ -105,11 +105,12 @@ define([
 
         mouse.animate({left: this._mousex, top: this._mousey}, 1000, function(){}).promise().done(() =>{
           window.setTimeout(() => {
+            const audioOn = !$('.js-nav-audio-btn').find('.icon').hasClass('mute');
             switch(this._stepType) {
               case 'select':
-                let wait = 40;
+                let wait = 500;
                 if (this._audio === true) {
-                  if($('#audio')[0].duration) {
+                  if($('#audio')[0].duration && audioOn === true) {
                     wait = $('#audio')[0].duration * 1000;
                   }
                 }
@@ -126,18 +127,20 @@ define([
                   window.setTimeout(() => {
                     inputStr += char;
                     target.val(inputStr);
-                  }, 100*i);
-                  if(i === chars.length-1) {
-                    let wait = 150;
-                    if (this._audio === true) {
-                      if($('#audio')[0].duration) {
-                        wait = $('#audio')[0].duration * 1000;
+
+                    if(i === chars.length-1) {
+                      let wait = 1000;
+                      if (this._audio === true) {
+                        if($('#audio')[0].duration && audioOn === true) {
+                          wait = ($('#audio')[0].duration * 1000) - (100*chars.length);
+                        }
                       }
+                      window.setTimeout(() => {
+                        this.onContinue();
+                      }, wait);
                     }
-                    window.setTimeout(() => {
-                      this.onContinue();
-                    }, wait);
-                  }
+                  }, 100*i);
+                  
                 })
                 break;
             }
