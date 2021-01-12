@@ -6,7 +6,7 @@
     {{#each _items}}
       <div class="component__widget simulation__widget">
 
-        <img class="simulation__image" src="{{_graphic.src}}" {{#if _graphic.alt}}aria-label="{{_graphic.alt}}"{{else}}aria-hidden="true"{{/if}}>
+        <img class="simulation__image" src="{{_graphic.src}}" {{#if _graphic.alt}}aria-label="{{_graphic.alt}}"{{else}}aria-hidden="true" alt=""{{/if}}>
         
         <div class="simulation__step" data-index="{{@index}}" >
 
@@ -17,7 +17,7 @@
           {{/if_eq}}
 
           {{#if_eq _stepType "input" }} 
-          <input type="text" class="simulation__input js-sim-input" data-index="{{@index}}" style="width:{{_position._width}}%;height:{{_position._height}}%;top:{{_position._top}}%;left:{{_position._left}}%;" />
+          <input type="text" class="simulation__input js-sim-input" aria-label="input" data-index="{{@index}}" style="width:{{_position._width}}%;height:{{_position._height}}%;top:{{_position._top}}%;left:{{_position._left}}%;" />
           {{/if_eq}}
 
           {{#if_eq _stepType "message" }} 
