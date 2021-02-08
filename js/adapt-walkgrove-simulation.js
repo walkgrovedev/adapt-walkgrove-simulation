@@ -59,6 +59,8 @@ define([
         target.addClass('watch');
       }
 
+      this.$('.simulation__message-main').a11y_focus();
+
     },
 
     checkIfResetOnRevisit: function() {
@@ -211,6 +213,7 @@ define([
       if (this._stepType === 'input') {
         const target = this.$('.simulation__widget').eq(this._stepIndex).find('.simulation__input');
         target.val('');
+        target.a11y_focus();
       }
 
        const steps = this.model.get('_items').length-1;
@@ -230,6 +233,8 @@ define([
           const percent = (100/steps) * this._score;
           content = content.replace('{0}','' + percent + '');
           result.innerHTML = content;
+
+          result.a11y_focus();
           
           this.setCompletionStatus();
 
@@ -296,6 +301,8 @@ define([
       this.$('.simulation__widget').eq(this._stepIndex).removeClass('is-visible'); 
       this._stepIndex = 0;
       this.$('.simulation__widget').eq(this._stepIndex).addClass('is-visible'); 
+
+      this.$('.simulation__message-main').a11y_focus();
     }
 
 
