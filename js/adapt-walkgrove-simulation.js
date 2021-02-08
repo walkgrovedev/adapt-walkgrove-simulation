@@ -102,6 +102,11 @@ define([
       mouse.animate({left: this._mousex, top: this._mousey}, 0);
 
       if (this._stepType !== 'message') {
+
+        if(this.$('.simulation__widget').eq(this._stepIndex).find('.simulation__content').eq(this._stepIndex).length) {
+          this.$('.simulation__widget').eq(this._stepIndex).find('.simulation__content').a11y_focus();
+        }
+
         this._mousex = target[0].offsetLeft + target[0].offsetWidth/2;
         this._mousey = target[0].offsetTop + target[0].offsetHeight/2;
 
@@ -148,6 +153,9 @@ define([
             }
           }, 500);
         });
+      } else {
+        //this.$('.simulation__message-body').a11y_focus();
+        this.$('.simulation__widget').eq(this._stepIndex).find('.simulation__message-body').a11y_focus();
       }
 
     },
@@ -233,8 +241,6 @@ define([
           const percent = (100/steps) * this._score;
           content = content.replace('{0}','' + percent + '');
           result.innerHTML = content;
-
-          result.a11y_focus();
           
           this.setCompletionStatus();
 
@@ -244,6 +250,8 @@ define([
           this.$('.simulation__retry-btn').removeClass('hide');
 
         }
+
+        this.$('.simulation__widget').eq(this._stepIndex).find('.simulation__message-body').a11y_focus();
 
       }
 
